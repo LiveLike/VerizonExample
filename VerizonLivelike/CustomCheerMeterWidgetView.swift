@@ -1,6 +1,6 @@
 import Lottie
 import UIKit
-import EngagementSDK
+
 
 class CustomCheerMeterWidgetView: UIView {
     let stackView: UIStackView = {
@@ -170,7 +170,7 @@ class CustomCheerMeterWidgetOptionView: UIView {
         super.init(frame: .zero)
 
         layer.cornerRadius = 4
-        layer.borderColor = UIColor(red: 230, green: 230, blue: 230).cgColor
+        //layer.borderColor = UIColor(red: 230, green: 230, blue: 230, alpha: ).cgColor
         layer.borderWidth = 2
         clipsToBounds = true
 

@@ -1,5 +1,5 @@
-import EngagementSDK
 import UIKit
+import LiveLikeSwift
 
 class CustomCheerMeterWidgetViewController: Widget {
     private let model: CheerMeterWidgetModel
@@ -47,13 +47,13 @@ class CustomCheerMeterWidgetViewController: Widget {
             print(error)
         }
 
-        cheerMeterView.addSubview(winnerView)
-        NSLayoutConstraint.activate([
-            winnerView.topAnchor.constraint(equalTo: cheerMeterView.topAnchor),
-            winnerView.leadingAnchor.constraint(equalTo: cheerMeterView.leadingAnchor),
-            winnerView.trailingAnchor.constraint(equalTo: cheerMeterView.trailingAnchor),
-            winnerView.bottomAnchor.constraint(equalTo: cheerMeterView.bottomAnchor)
-        ])
+//        cheerMeterView.addSubview(winnerView)
+//        NSLayoutConstraint.activate([
+//            winnerView.topAnchor.constraint(equalTo: cheerMeterView.topAnchor),
+//            winnerView.leadingAnchor.constraint(equalTo: cheerMeterView.leadingAnchor),
+//            winnerView.trailingAnchor.constraint(equalTo: cheerMeterView.trailingAnchor),
+//            winnerView.bottomAnchor.constraint(equalTo: cheerMeterView.bottomAnchor)
+//        ])
         cheerMeterWidgetView = cheerMeterView
 
         view = cheerMeterView

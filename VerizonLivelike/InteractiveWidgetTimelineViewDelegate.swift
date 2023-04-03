@@ -43,7 +43,7 @@ final public class InteractiveTimelineWidgetViewDelegate: WidgetViewDelegate {
         case .ready:
             break
         case .interacting:
-            if widget.kind.isOf(.textQuiz, .imageQuiz, .imageSlider) {
+            if (widget.kind == .textQuiz || widget.kind == .imageQuiz || widget.kind == .imageSlider) {
                 widget.moveToNextState()
             }
         case .results:

@@ -9,8 +9,8 @@ import Lottie
 import UIKit
 
 class CustomCheerMeterWinnerView: UIView {
-    let winnerAnimationView: AnimationView = {
-        let animationView = AnimationView(name: "win-1")
+    let winnerAnimationView: LottieAnimationView = {
+        let animationView = LottieAnimationView(name: "win-1")
         animationView.translatesAutoresizingMaskIntoConstraints = false
         return animationView
     }()
@@ -19,7 +19,7 @@ class CustomCheerMeterWinnerView: UIView {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 4
-        view.layer.borderColor = UIColor(red: 230, green: 230, blue: 230).cgColor
+        view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = 1
         view.translatesAutoresizingMaskIntoConstraints = false
         return view

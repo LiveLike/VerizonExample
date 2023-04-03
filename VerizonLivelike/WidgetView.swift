@@ -26,7 +26,6 @@ open class Widget: UIViewController, WidgetViewModel {
     open var currentState: WidgetState
     open weak var delegate: WidgetViewDelegate?
     open var userDidInteract: Bool
-    open var theme: Theme
     open var dismissSwipeableView: UIView {
         return view
     }
@@ -53,7 +52,6 @@ open class Widget: UIViewController, WidgetViewModel {
         self.previousState = nil
         self.currentState = .ready
         self.userDidInteract = false
-        self.theme = Theme()
         self.widgetLink = nil
         self.widgetModel = nil
         super.init(nibName: nil, bundle: nil)
@@ -85,7 +83,6 @@ open class Widget: UIViewController, WidgetViewModel {
         self.previousState = nil
         self.currentState = .ready
         self.userDidInteract = false
-        self.theme = Theme()
         self.widgetLink = nil
         self.widgetModel = nil
         super.init(nibName: nil, bundle: nil)
@@ -100,7 +97,6 @@ open class Widget: UIViewController, WidgetViewModel {
         self.interactionTimeInterval = model.interactionTimeInterval
         self.currentState = .ready
         self.userDidInteract = false
-        self.theme = Theme()
         let opts = model.options.map {
             WidgetOption(
                 id: $0.id,
@@ -127,7 +123,6 @@ open class Widget: UIViewController, WidgetViewModel {
         self.interactionTimeInterval = model.interactionTimeInterval
         self.currentState = .ready
         self.userDidInteract = false
-        self.theme = Theme()
         self.optionsArray = nil
         self.options = nil
         self.customData = model.customData
@@ -145,7 +140,6 @@ open class Widget: UIViewController, WidgetViewModel {
         self.interactionTimeInterval = model.interactionTimeInterval
         self.currentState = .ready
         self.userDidInteract = false
-        self.theme = Theme()
         self.optionsArray = nil
         self.options = nil
         self.customData = model.customData
@@ -163,7 +157,6 @@ open class Widget: UIViewController, WidgetViewModel {
         self.interactionTimeInterval = model.interactionTimeInterval
         self.currentState = .ready
         self.userDidInteract = false
-        self.theme = Theme()
         let opts = model.choices.map {
             return WidgetOption(
                 id: $0.id,
@@ -192,7 +185,6 @@ open class Widget: UIViewController, WidgetViewModel {
         self.interactionTimeInterval = model.interactionTimeInterval
         self.currentState = .ready
         self.userDidInteract = false
-        self.theme = Theme()
         let opts = model.options.map {
             return WidgetOption(
                 id: $0.id,
@@ -221,7 +213,6 @@ open class Widget: UIViewController, WidgetViewModel {
         self.interactionTimeInterval = model.interactionTimeInterval
         self.currentState = .ready
         self.userDidInteract = false
-        self.theme = Theme()
         let opts = model.options.map {
             return WidgetOption(
                 id: $0.id,
@@ -250,7 +241,6 @@ open class Widget: UIViewController, WidgetViewModel {
         self.interactionTimeInterval = model.interactionTimeInterval
         self.currentState = .ready
         self.userDidInteract = false
-        self.theme = Theme()
         let opts = model.options.map {
             return WidgetOption(
                 id: $0.id,
@@ -278,7 +268,6 @@ open class Widget: UIViewController, WidgetViewModel {
         self.interactionTimeInterval = model.interactionTimeInterval
         self.currentState = .ready
         self.userDidInteract = false
-        self.theme = Theme()
         let opts = model.options.map {
             return WidgetOption(
                 id: $0.id,
@@ -306,7 +295,6 @@ open class Widget: UIViewController, WidgetViewModel {
         self.interactionTimeInterval = model.interactionTimeInterval
         self.currentState = .ready
         self.userDidInteract = false
-        self.theme = Theme()
         self.optionsArray = nil
         self.options = nil
         self.customData = model.customData
@@ -324,7 +312,6 @@ open class Widget: UIViewController, WidgetViewModel {
         self.interactionTimeInterval = model.interactionTimeInterval
         self.currentState = .ready
         self.userDidInteract = false
-        self.theme = Theme()
         self.optionsArray = nil
         self.options = nil
         self.customData = model.customData

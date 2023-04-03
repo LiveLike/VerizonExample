@@ -1,5 +1,4 @@
 import UIKit
-import EngagementSDK
 
 final class GradientView: UIView {
 
@@ -8,13 +7,13 @@ final class GradientView: UIView {
         case vertical
     }
 
-    var livelike_startColor: Theme.Background = .fill(color: .clear) {
+    var livelike_startColor: Background = .fill(color: .clear) {
         didSet {
             updateGradient()
         }
     }
 
-    var livelike_endColor: Theme.Background = .fill(color: .red) {
+    var livelike_endColor: Background = .fill(color: .red) {
         didSet {
             updateGradient()
         }
@@ -101,4 +100,28 @@ final class GradientView: UIView {
             endPoint = CGPoint(x: 1.0, y: 0.5)
         }
     }
+}
+
+public enum Background {
+    // swiftlint:disable nesting
+    public struct Gradient {
+        public var colors: [UIColor]
+        public var start: CGPoint
+        public var end: CGPoint
+
+        public init(colors: [UIColor]) {
+            self.colors = colors
+            start = CGPoint(x: 0, y: 0.5)
+            end = CGPoint(x: 1, y: 0.5)
+        }
+
+        public init(colors: [UIColor], start: CGPoint, end: CGPoint) {
+            self.colors = colors
+            self.start = start
+            self.end = end
+        }
+    }
+
+    case gradient(gradient: Gradient)
+    case fill(color: UIColor)
 }

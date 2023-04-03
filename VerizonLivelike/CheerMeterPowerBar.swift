@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import EngagementSDK
+
 
 class CheerMeterPowerBar: UIView {
     private let leftChoiceLabel: UILabel
@@ -17,8 +17,7 @@ class CheerMeterPowerBar: UIView {
     private let rightChoiceFlashView: UIView
     private var leftGradientWidthConstraint: NSLayoutConstraint!
 
-    private var theme: Theme?
-
+  
     var leftChoiceText: String {
         get { return leftChoiceLabel.text ?? "" }
         set { leftChoiceLabel.text = newValue }
@@ -210,19 +209,4 @@ func constraintBased<View>(factory: () -> View) -> View where View: UIView {
     let view = factory()
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
-}
-
-extension CheerMeterPowerBar {
-    func applyTheme(_ theme: Theme) {
-        self.theme = theme
-        leftChoiceLabel.font = theme.cheerMeter.teamOneFont
-        leftChoiceLabel.textColor = theme.cheerMeter.teamOneTextColor
-        leftChoiceBar.livelike_startColor = .fill(color: UIColor.gray)
-        leftChoiceBar.livelike_endColor = .fill(color: UIColor.gray)
-
-        rightChoiceLabel.font = theme.cheerMeter.teamTwoFont
-        rightChoiceLabel.textColor = theme.cheerMeter.teamTwoTextColor
-        rightChoiceBar.livelike_startColor = .fill(color: UIColor.red)
-        rightChoiceBar.livelike_endColor = .fill(color: UIColor.red)
-    }
 }

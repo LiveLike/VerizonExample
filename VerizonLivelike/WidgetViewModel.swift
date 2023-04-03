@@ -36,8 +36,7 @@ public protocol WidgetViewModel: AnyObject {
     var userDidInteract: Bool { get }
 
     var dismissSwipeableView: UIView { get }
-    var theme: Theme { get set }
-
+   
     func moveToNextState()
     func addCloseButton(_ completion: @escaping (WidgetViewModel) -> Void)
     func addTimer(seconds: TimeInterval, completion: @escaping (WidgetViewModel) -> Void)
