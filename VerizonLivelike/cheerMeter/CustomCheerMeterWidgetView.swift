@@ -189,7 +189,7 @@ class CustomCheerMeterWidgetOptionView: UIView {
             imageView.leadingAnchor.constraint(equalTo: button.leadingAnchor, constant: 2),
             imageView.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: -2),
             imageView.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: -56),
-            imageView.heightAnchor.constraint(equalToConstant: 48),
+            //imageView.heightAnchor.constraint(equalToConstant: 48),
 
             optionLabel.heightAnchor.constraint(equalToConstant: 16),
             optionLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8),
