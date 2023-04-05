@@ -163,6 +163,7 @@ class CustomTextChoiceWidgetOptionView: UIButton {
         percentageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
         percentageLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
         percentageLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        percentageLabel.layer.zPosition = 1
         //percentageLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
 
         progressView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true

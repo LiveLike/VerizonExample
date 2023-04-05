@@ -22,7 +22,6 @@
 		DF869EE429DACA57002D7C68 /* CustomCheerMeterWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF869EDF29DACA56002D7C68 /* CustomCheerMeterWidgetView.swift */; };
 		DF869EE529DACA57002D7C68 /* CustomCheerMeterWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF869EE029DACA56002D7C68 /* CustomCheerMeterWidgetViewController.swift */; };
 		DF869EE629DACA57002D7C68 /* CheerMeterPowerBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF869EE129DACA57002D7C68 /* CheerMeterPowerBar.swift */; };
-		DF869EE729DACA57002D7C68 /* CustomCheerMeterWinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF869EE229DACA57002D7C68 /* CustomCheerMeterWinnerView.swift */; };
 		DF869EE829DACA57002D7C68 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF869EE329DACA57002D7C68 /* GradientView.swift */; };
 		DF869EEA29DAD180002D7C68 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF869EE929DAD180002D7C68 /* WidgetView.swift */; };
 		DF869EEE29DAD37A002D7C68 /* WidgetState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF869EEB29DAD379002D7C68 /* WidgetState.swift */; };
@@ -34,6 +33,7 @@
 		DF869EFC29DAF53E002D7C68 /* InteractiveWidgetTimelineViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF869EFB29DAF53E002D7C68 /* InteractiveWidgetTimelineViewDelegate.swift */; };
 		DF869F0129DB4625002D7C68 /* CustomTextPollWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF869F0029DB4625002D7C68 /* CustomTextPollWidgetViewController.swift */; };
 		DF869F0329DB467F002D7C68 /* CustomTextChoiceWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF869F0229DB467F002D7C68 /* CustomTextChoiceWidgetView.swift */; };
+		DF869F0529DD6045002D7C68 /* PollWidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF869F0429DD6045002D7C68 /* PollWidgetViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +77,6 @@
 		DF869EDF29DACA56002D7C68 /* CustomCheerMeterWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCheerMeterWidgetView.swift; sourceTree = "<group>"; };
 		DF869EE029DACA56002D7C68 /* CustomCheerMeterWidgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCheerMeterWidgetViewController.swift; sourceTree = "<group>"; };
 		DF869EE129DACA57002D7C68 /* CheerMeterPowerBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheerMeterPowerBar.swift; sourceTree = "<group>"; };
-		DF869EE229DACA57002D7C68 /* CustomCheerMeterWinnerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCheerMeterWinnerView.swift; sourceTree = "<group>"; };
 		DF869EE329DACA57002D7C68 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		DF869EE929DAD180002D7C68 /* WidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
 		DF869EEB29DAD379002D7C68 /* WidgetState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetState.swift; sourceTree = "<group>"; };
@@ -89,6 +88,7 @@
 		DF869EFB29DAF53E002D7C68 /* InteractiveWidgetTimelineViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveWidgetTimelineViewDelegate.swift; sourceTree = "<group>"; };
 		DF869F0029DB4625002D7C68 /* CustomTextPollWidgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextPollWidgetViewController.swift; sourceTree = "<group>"; };
 		DF869F0229DB467F002D7C68 /* CustomTextChoiceWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextChoiceWidgetView.swift; sourceTree = "<group>"; };
+		DF869F0429DD6045002D7C68 /* PollWidgetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollWidgetViewModel.swift; sourceTree = "<group>"; };
 		F0806A8B50EB09E1E9D5D1F2 /* Pods-VerizonLivelikeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VerizonLivelikeTests.release.xcconfig"; path = "Target Support Files/Pods-VerizonLivelikeTests/Pods-VerizonLivelikeTests.release.xcconfig"; sourceTree = "<group>"; };
 		F78E9DCCDB78E601FECCECD7 /* Pods_VerizonLivelikeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VerizonLivelikeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -211,7 +211,6 @@
 				DF869EE129DACA57002D7C68 /* CheerMeterPowerBar.swift */,
 				DF869EDF29DACA56002D7C68 /* CustomCheerMeterWidgetView.swift */,
 				DF869EE029DACA56002D7C68 /* CustomCheerMeterWidgetViewController.swift */,
-				DF869EE229DACA57002D7C68 /* CustomCheerMeterWinnerView.swift */,
 				DF869EE329DACA57002D7C68 /* GradientView.swift */,
 			);
 			path = cheerMeter;
@@ -220,6 +219,7 @@
 		DF869EFF29DB443C002D7C68 /* textPoll */ = {
 			isa = PBXGroup;
 			children = (
+				DF869F0429DD6045002D7C68 /* PollWidgetViewModel.swift */,
 				DF869F0029DB4625002D7C68 /* CustomTextPollWidgetViewController.swift */,
 				DF869F0229DB467F002D7C68 /* CustomTextChoiceWidgetView.swift */,
 			);
@@ -477,7 +477,6 @@
 			files = (
 				DF869F0329DB467F002D7C68 /* CustomTextChoiceWidgetView.swift in Sources */,
 				DF869EB429DAC7F8002D7C68 /* ViewController.swift in Sources */,
-				DF869EE729DACA57002D7C68 /* CustomCheerMeterWinnerView.swift in Sources */,
 				DF869EE629DACA57002D7C68 /* CheerMeterPowerBar.swift in Sources */,
 				DF869EFA29DAD808002D7C68 /* WidgetDismissedProperties.swift in Sources */,
 				DF869EB029DAC7F8002D7C68 /* AppDelegate.swift in Sources */,
@@ -487,6 +486,7 @@
 				DF869EE429DACA57002D7C68 /* CustomCheerMeterWidgetView.swift in Sources */,
 				DF869F0129DB4625002D7C68 /* CustomTextPollWidgetViewController.swift in Sources */,
 				DF869EF029DAD37A002D7C68 /* WidgetOption.swift in Sources */,
+				DF869F0529DD6045002D7C68 /* PollWidgetViewModel.swift in Sources */,
 				DF869EEA29DAD180002D7C68 /* WidgetView.swift in Sources */,
 				DF869EEF29DAD37A002D7C68 /* WidgetViewModel.swift in Sources */,
 				DF869EEE29DAD37A002D7C68 /* WidgetState.swift in Sources */,
