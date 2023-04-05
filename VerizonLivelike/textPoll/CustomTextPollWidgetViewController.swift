@@ -10,14 +10,9 @@ import UIKit
 
 class CustomTextPollWidgetViewController: Widget {
     private let model: PollWidgetModel
+    private let viewModel: PollWidgetViewModel
 
     private var optionViews: [CustomTextChoiceWidgetOptionView] = []
-
-//    let timer: CustomWidgetBarTimer = {
-//        let timer = CustomWidgetBarTimer()
-//        timer.translatesAutoresizingMaskIntoConstraints = false
-//        return timer
-//    }()
 
     var choiceView: CustomTextChoiceWidgetView {
         if let view = view as? CustomTextChoiceWidgetView {
@@ -30,6 +25,7 @@ class CustomTextPollWidgetViewController: Widget {
 
     override init(model: PollWidgetModel) {
         self.model = model
+        self.viewModel = PollWidgetViewModel(model: model)
         super.init(model: model)
     }
 
@@ -43,22 +39,13 @@ class CustomTextPollWidgetViewController: Widget {
         choiceView.widgetTag.text = "TEXT POLL"
         choiceView.titleLabel.text = model.question
         model.options.enumerated().forEach { index, option in
-            let choiceOptionView = CustomTextChoiceWidgetOptionView()
+            let choiceOptionView = CustomTextChoiceWidgetOptionView(id: option.id, showBiggerOption: (model.options.count == 2))
             choiceOptionView.textLabel.text = option.text
-            choiceOptionView.percentageLabel.isHidden = true
-            choiceOptionView.progressView.isHidden = true
             choiceOptionView.tag = index
             choiceOptionView.addTarget(self, action: #selector(optionSelected(_:)), for: .touchUpInside)
             choiceView.optionsStackView.addArrangedSubview(choiceOptionView)
             optionViews.append(choiceOptionView)
         }
-
-//        choiceView.addSubview(timer)
-//        timer.bottomAnchor.constraint(equalTo: choiceView.topAnchor).isActive = true
-//        timer.leadingAnchor.constraint(equalTo: choiceView.leadingAnchor).isActive = true
-//        timer.trailingAnchor.constraint(equalTo: choiceView.trailingAnchor).isActive = true
-//        timer.heightAnchor.constraint(equalToConstant: 5).isActive = true
-
         view = choiceView
     }
 
@@ -66,38 +53,69 @@ class CustomTextPollWidgetViewController: Widget {
         super.viewDidLoad()
 
         model.delegate = self
-//        timer.play(duration: model.interactionTimeInterval)
-        DispatchQueue.main.asyncAfter(deadline: .now() + model.interactionTimeInterval) {
-            self.choiceView.optionsStackView.isUserInteractionEnabled = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-                self.delegate?.widgetDidEnterState(widget: self, state: .finished)
+        
+        if model.mostRecentVote != nil {
+            DispatchQueue.main.async {
+                self.showResultsFromWidgetOptions()
             }
+        }
+        
+    }
+    
+    private func showResultsFromWidgetOptions() {
+        let viewDataPairs = zip(self.optionViews, self.model.options)
+            .filter { view, data in view.id == data.id }
+
+        for (view, data) in viewDataPairs {
+            if let vote = model.mostRecentVote, data.id == vote.optionID {
+                // view.optionThemeStyle = .selected
+                // self.applyOptionTheme(optionView: view, optionTheme: nil)
+            } else {
+                // view.optionThemeStyle = .unselected
+                // self.applyOptionTheme(optionView: view, optionTheme: nil)
+            }
+
+            let voteCount = viewModel.getVoteCount(optionID: data.id)
+            let votePercentage = self.viewModel.getVoteCountTotal() > 0
+                ? CGFloat(voteCount) / CGFloat(self.viewModel.getVoteCountTotal())
+                : 0
+            
+            view.layer.borderColor = UIColor.clear.cgColor
+            view.percentageLabel.text = "\(Int(votePercentage * 100))%"
+            view.progressViewWidthConstraint.constant = votePercentage * view.bounds.width
+            view.percentageLabel.isHidden = false
         }
     }
+    
 
     @objc private func optionSelected(_ button: UIButton) {
-        if let previousSelectedIndex = selectedOptionIndex {
-            let previousSelectedChoiceView = optionViews[previousSelectedIndex]
-            //previousSelectedChoiceView.backgroundColor = .white
-            previousSelectedChoiceView.percentageLabel.textColor = .white
-            previousSelectedChoiceView.textLabel.textColor = .white
-            previousSelectedChoiceView.layer.borderColor = UIColor.white.cgColor
-            previousSelectedChoiceView.progressView.backgroundColor = .red
-        } else {
-            // on first selection, reveal percentage label and progress view
+        
+        if selectedOptionIndex == nil {
             optionViews.forEach {
-                $0.percentageLabel.isHidden = false
-                $0.progressView.isHidden = false
+                $0.layer.borderColor = UIColor.clear.cgColor
             }
         }
-
-        guard let choiceView = button as? CustomTextChoiceWidgetOptionView else { return }
-        //choiceView.backgroundColor = UIColor(red: 20/255, green: 20/255, blue: 20/255, alpha: 1.0)
-        choiceView.textLabel.textColor = .white
-        choiceView.percentageLabel.textColor = .white
-        //choiceView.backgroundColor = .black
-        choiceView.layer.borderColor = UIColor.clear.cgColor
-        choiceView.progressView.backgroundColor = .red
+//        if let previousSelectedIndex = selectedOptionIndex {
+////            let previousSelectedChoiceView = optionViews[previousSelectedIndex]
+////            //previousSelectedChoiceView.backgroundColor = .white
+////            previousSelectedChoiceView.percentageLabel.textColor = .white
+////            previousSelectedChoiceView.textLabel.textColor = .white
+////            //previousSelectedChoiceView.layer.borderColor = UIColor.white.cgColor
+////            previousSelectedChoiceView.progressView.backgroundColor = .red
+//        } else {
+//            // on first selection, reveal percentage label and progress view
+//            optionViews.forEach {
+//                $0.layer.borderColor = UIColor.white.cgColor
+//            }
+//        }
+//
+//        guard let choiceView = button as? CustomTextChoiceWidgetOptionView else { return }
+//        //choiceView.backgroundColor = UIColor(red: 20/255, green: 20/255, blue: 20/255, alpha: 1.0)
+//        choiceView.textLabel.textColor = .white
+//        choiceView.percentageLabel.textColor = .white
+//        //choiceView.backgroundColor = .black
+//        choiceView.layer.borderColor = UIColor.clear.cgColor
+//        choiceView.progressView.backgroundColor = .red
 
         selectedOptionIndex = button.tag
 

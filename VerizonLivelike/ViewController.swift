@@ -13,6 +13,12 @@ class ViewController: UIViewController {
     var livelike: LiveLike? = nil
     private let  interactiveTimelineWidgetViewDelegate = InteractiveTimelineWidgetViewDelegate()
     
+    private let widgetTimeline: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
     let widgetView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -31,16 +37,24 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.view.addSubview(widgetView)
         
+        self.view.addSubview(widgetTimeline)
         NSLayoutConstraint.activate([
-            widgetView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
-            widgetView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            widgetView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
+            widgetTimeline.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            widgetTimeline.topAnchor.constraint(equalTo: view.topAnchor),
+            widgetTimeline.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            widgetTimeline.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        self.widgetTimeline.addSubview(widgetView)
+        NSLayoutConstraint.activate([
+            widgetView.leadingAnchor.constraint(equalTo: widgetTimeline.leadingAnchor),
+            widgetView.topAnchor.constraint(equalTo: widgetTimeline.topAnchor),
+            widgetView.trailingAnchor.constraint(equalTo: widgetTimeline.trailingAnchor),
+            widgetView.bottomAnchor.constraint(equalTo: widgetTimeline.bottomAnchor),
+            widgetView.widthAnchor.constraint(equalTo: widgetTimeline.widthAnchor)
         ])
         
-        widgetView.backgroundColor = .red
-        
+       
         initSDK()
         loadCheerMeterWidget()
     }
@@ -59,6 +73,11 @@ class ViewController: UIViewController {
             handleResult(result: result)
         }
         
+        
+        self.livelike?.getWidgetModel(id: "3b11b5a3-1e2b-4e59-bf8e-f01994164d8c", kind: WidgetKind.textPoll){ [self] result in
+            handleResult(result: result)
+        }
+        
     }
     
     func presentWidget(widgetViewController: Widget){
@@ -68,15 +87,7 @@ class ViewController: UIViewController {
                 self.addChild(viewController)
                 viewController.didMove(toParent: self)
                 viewController.view.translatesAutoresizingMaskIntoConstraints = false
-                //self.view.addSubview(viewController.view)
                 self.widgetView.addArrangedSubview(viewController.view)
-                
-//                NSLayoutConstraint.activate([
-//                    viewController.view.topAnchor.constraint(equalTo: self.widgetView.topAnchor),
-//                    viewController.view.leadingAnchor.constraint(equalTo: self.widgetView.leadingAnchor),
-//                    viewController.view.trailingAnchor.constraint(equalTo: self.widgetView.trailingAnchor),
-//                    viewController.view.bottomAnchor.constraint(equalTo: self.widgetView.bottomAnchor, constant: 50)
-//                ])
                 
                 
                 viewController.delegate = self.interactiveTimelineWidgetViewDelegate

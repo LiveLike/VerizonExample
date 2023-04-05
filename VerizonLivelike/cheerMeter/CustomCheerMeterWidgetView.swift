@@ -1,4 +1,3 @@
-import Lottie
 import UIKit
 
 

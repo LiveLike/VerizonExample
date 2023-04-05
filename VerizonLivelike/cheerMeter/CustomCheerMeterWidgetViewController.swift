@@ -6,13 +6,7 @@ class CustomCheerMeterWidgetViewController: Widget {
 
     private var cheerMeterWidgetView: CustomCheerMeterWidgetView!
 
-    let winnerView: CustomCheerMeterWinnerView = {
-        let winnerView = CustomCheerMeterWinnerView()
-        winnerView.translatesAutoresizingMaskIntoConstraints = false
-        winnerView.isHidden = true
-        return winnerView
-    }()
-
+    
     override init(model: CheerMeterWidgetModel) {
         self.model = model
         super.init(model: model)
@@ -47,13 +41,7 @@ class CustomCheerMeterWidgetViewController: Widget {
             print(error)
         }
 
-        cheerMeterView.addSubview(winnerView)
-        NSLayoutConstraint.activate([
-            winnerView.topAnchor.constraint(equalTo: cheerMeterView.topAnchor),
-            winnerView.leadingAnchor.constraint(equalTo: cheerMeterView.leadingAnchor),
-            winnerView.trailingAnchor.constraint(equalTo: cheerMeterView.trailingAnchor),
-            winnerView.bottomAnchor.constraint(equalTo: cheerMeterView.bottomAnchor)
-        ])
+        
         cheerMeterWidgetView = cheerMeterView
 
         view = cheerMeterView
@@ -61,22 +49,7 @@ class CustomCheerMeterWidgetViewController: Widget {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         model.delegate = self
-        DispatchQueue.main.asyncAfter(deadline: .now() + model.interactionTimeInterval) {
-            let winnerImage = self.model.options[0].voteCount >= self.model.options[1].voteCount ? self.cheerMeterWidgetView.optionViewA.imageView.image : self.cheerMeterWidgetView.optionViewB.imageView.image
-
-            self.winnerView.winnerImageView.image = winnerImage
-            self.winnerView.winnerAnimationView.play()
-            UIView.animate(withDuration: 1.0) {
-                self.cheerMeterWidgetView.bodyView.alpha = 0.3
-                self.winnerView.isHidden = false
-            }
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-                self.delegate?.widgetDidEnterState(widget: self, state: .finished)
-            }
-        }
     }
 
     private func showResultsFromWidgetOptions() {

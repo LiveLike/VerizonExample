@@ -100,6 +100,9 @@ class CustomTextChoiceWidgetView: UIView {
 }
 
 class CustomTextChoiceWidgetOptionView: UIButton {
+    
+    let id: String
+    
     let textLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -127,10 +130,19 @@ class CustomTextChoiceWidgetOptionView: UIButton {
         return view
     }()
 
-    init() {
+    init(id: String, showBiggerOption:Bool) {
+        
+        self.id = id
         progressViewWidthConstraint = progressView.widthAnchor.constraint(equalToConstant: 0)
         super.init(frame: .zero)
 
+        if(showBiggerOption){
+            self.heightAnchor.constraint(equalToConstant: 64).isActive = true
+        } else {
+            self.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        }
+        
+        
         layer.cornerRadius = 8
         layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor
         layer.borderWidth = 1
