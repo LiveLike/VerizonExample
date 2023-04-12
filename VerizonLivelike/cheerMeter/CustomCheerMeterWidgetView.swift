@@ -107,7 +107,7 @@ class CustomCheerMeterWidgetView: UIView {
         titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 32).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor).isActive = true
-        // titleLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
+        titleLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
         titleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 18).isActive = true
 
         bodyView.addSubview(optionViewA)

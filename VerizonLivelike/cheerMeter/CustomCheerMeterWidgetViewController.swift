@@ -55,45 +55,8 @@ class CustomCheerMeterWidgetViewController: Widget {
     private func showResultsFromWidgetOptions() {
 
         guard let cheerResults = options else { return }
-
         cheerMeterWidgetView.showScores()
-//        cheerMeterWidgetView.score = model.userVoteTotal.description
-//        
-//        if let leftResults = cheerResults.first(where: { $0.id == leftCheerOption.id }) {
-//            leftScore = leftResults.voteCount ?? 0
-//            cheerMeterWidgetView.leftChoiceScore = leftResults.voteCount ?? 0
-//        }
-//        if let rightResults = cheerResults.first(where: { $0.id == rightCheerOption.id }) {
-//            rightScore = rightResults.voteCount ?? 0
-//            cheerMeterWidgetView.rightChoiceScore = rightResults.voteCount ?? 0
-//        }
-//        
-//        // handle tie
-//        if leftScore == rightScore {
-//            self.cheerMeterResults.playTieAnimation {
-//                return
-//            }
-//        } else {
-//            // handle a winner
-//            let winnerImageURL: URL? = {
-//                if leftScore > rightScore {
-//                    return self.cheerMeterView.leftChoiceImageURL
-//                } else {
-//                    return self.cheerMeterView.rightChoiceImageURL
-//                }
-//            }()
-//            
-//            if let winnerImageURL = winnerImageURL {
-//                mediaRepository.getImage(url: winnerImageURL) { [weak self] result in
-//                    switch result {
-//                    case .success(let success):
-//                        self?.cheerMeterResults.playWin(winnerImage: success.image, animated: false) {}
-//                    case .failure(let error):
-//                        log.error(error)
-//                    }
-//                }
-//            }
-//        }
+
     }
 
     @objc func optionViewASelected() {

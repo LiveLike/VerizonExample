@@ -117,13 +117,13 @@ class CheerMeterPowerBar: UIView {
         NSLayoutConstraint.activate([
             rightChoiceBar.leadingAnchor.constraint(equalTo: leftChoiceBar.trailingAnchor),
             rightChoiceBar.trailingAnchor.constraint(equalTo: trailingAnchor),
-            rightChoiceBar.topAnchor.constraint(equalTo: topAnchor, constant: 64),
+            rightChoiceBar.topAnchor.constraint(equalTo: topAnchor, constant: 32),
             rightChoiceBar.bottomAnchor.constraint(equalTo: bottomAnchor),
             rightChoiceBar.heightAnchor.constraint(equalToConstant: 24),
 
             leftGradientWidthConstraint,
             leftChoiceBar.leadingAnchor.constraint(equalTo: leadingAnchor),
-            leftChoiceBar.topAnchor.constraint(equalTo: topAnchor, constant: 64),
+            leftChoiceBar.topAnchor.constraint(equalTo: topAnchor, constant: 32),
             leftChoiceBar.bottomAnchor.constraint(equalTo: bottomAnchor),
             leftChoiceBar.heightAnchor.constraint(equalToConstant: 24),
 
