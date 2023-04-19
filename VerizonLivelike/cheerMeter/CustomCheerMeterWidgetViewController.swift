@@ -5,10 +5,13 @@ class CustomCheerMeterWidgetViewController: Widget {
     private let model: CheerMeterWidgetModel
 
     private var cheerMeterWidgetView: CustomCheerMeterWidgetView!
-
+    private var leftCheerOption: CheerMeterWidgetModel.Option
+    private var rightCheerOption: CheerMeterWidgetModel.Option
     
     override init(model: CheerMeterWidgetModel) {
         self.model = model
+        self.leftCheerOption = model.options[0]
+        self.rightCheerOption = model.options[1]
         super.init(model: model)
     }
 
@@ -50,22 +53,49 @@ class CustomCheerMeterWidgetViewController: Widget {
     override func viewDidLoad() {
         super.viewDidLoad()
         model.delegate = self
+        if model.userVotes.isEmpty {
+            cheerMeterWidgetView.hidePowerBar()
+        }
     }
 
-    private func showResultsFromWidgetOptions() {
+    
+    override func moveToNextState() {
+        showResultsFromWidgetOptions()
+    }
+    
+    public func showResultsFromWidgetOptions() {
 
         guard let cheerResults = options else { return }
-        cheerMeterWidgetView.showScores()
+        
+        let totalVotes = model.options.map { $0.voteCount }.reduce(0, +)
+        
+        if let leftResults = cheerResults.first(where: { $0.id == leftCheerOption.id }) {
+            let voteCount = (leftResults.voteCount ?? 0)
+            let voteParts = totalVotes > 0 ? CGFloat(voteCount) / CGFloat(totalVotes) : 0
+            let votePerecentage = voteParts * 100
+            self.cheerMeterWidgetView.leftChoiceScore = voteCount
+            self.cheerMeterWidgetView.leftChoiceText = String(format: "%.0f%%", votePerecentage)
+        }
+        if let rightResults = cheerResults.first(where: { $0.id == rightCheerOption.id }) {
+            let voteCount = (rightResults.voteCount ?? 0)
+            let voteParts = totalVotes > 0 ? CGFloat(voteCount) / CGFloat(totalVotes) : 0
+            let votePerecentage = voteParts * 100
+            self.cheerMeterWidgetView.rightChoiceScore = voteCount
+            self.cheerMeterWidgetView.rightChoiceText = String(format: "%.0f%%", votePerecentage)
+        }
+       
 
     }
 
     @objc func optionViewASelected() {
+        self.cheerMeterWidgetView.showPowerBar()
         self.cheerMeterWidgetView.optionViewA.layer.borderColor = UIColor.white.cgColor
         self.cheerMeterWidgetView.optionViewB.layer.borderColor = UIColor.gray.cgColor
         model.submitVote(optionID: model.options[0].id)
     }
 
     @objc func optionViewBSelected() {
+        self.cheerMeterWidgetView.showPowerBar()
         self.cheerMeterWidgetView.optionViewB.layer.borderColor = UIColor.white.cgColor
         self.cheerMeterWidgetView.optionViewA.layer.borderColor = UIColor.gray.cgColor
         model.submitVote(optionID: model.options[1].id)

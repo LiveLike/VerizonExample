@@ -136,6 +136,14 @@ class CustomCheerMeterWidgetView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func hidePowerBar(){
+        self.powerBar.isHidden = true
+    }
+    
+    func showPowerBar(){
+        self.powerBar.isHidden = false
+    }
 }
 
 class CustomCheerMeterWidgetOptionView: UIView {

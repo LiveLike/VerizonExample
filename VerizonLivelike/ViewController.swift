@@ -60,9 +60,11 @@ class ViewController: UIViewController {
     }
     
     func initSDK(){
-        let config = LiveLikeConfig(clientID: "8PqSNDgIVHnXuJuGte1HdvOjOqhCFE1ZCR3qhqaS")
+        var config = LiveLikeConfig(clientID: "8PqSNDgIVHnXuJuGte1HdvOjOqhCFE1ZCR3qhqaS")
+        config.accessTokenStorage = self
         self.livelike = LiveLike(config: config)
     }
+    
     
     func loadCheerMeterWidget(){
         self.livelike?.getWidgetModel(id: "9cceb48d-dfc0-44a6-96a4-ae5ab1f8dd88", kind: WidgetKind.cheerMeter){ [self] result in
@@ -88,8 +90,6 @@ class ViewController: UIViewController {
                 viewController.didMove(toParent: self)
                 viewController.view.translatesAutoresizingMaskIntoConstraints = false
                 self.widgetView.addArrangedSubview(viewController.view)
-                
-                
                 viewController.delegate = self.interactiveTimelineWidgetViewDelegate
                 viewController.moveToNextState()
             }
@@ -147,5 +147,15 @@ class ViewController: UIViewController {
         }
     }
     
+}
+
+extension ViewController: AccessTokenStorage {
+    func fetchAccessToken() -> String? {
+        return "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3NfdG9rZW4iOiJlNTc5YmQxOWNlNTRkYmU2N2VlMmE5ODE4MjljYTliOWQxMDEzOTNmIiwiaXNzIjoiYmxhc3RydCIsImNsaWVudF9pZCI6IjhQcVNORGdJVkhuWHVKdUd0ZTFIZHZPak9xaENGRTFaQ1IzcWhxYVMiLCJpYXQiOjE2ODA3NzU1MDksImlkIjoiZWFiYWRkY2UtOGJlOS00ZDA1LWI1MmMtNmE4ODUyZmU4NDVmIn0.DYOSKGCyGkMCNl_LUAJXi6RJA_v8Ufa9mXF9NG3Gk0Q"
+    }
+    
+    func storeAccessToken(accessToken: String) {
+        //As VZ will be providing token always, we do not need to store token
+    }
 }
 

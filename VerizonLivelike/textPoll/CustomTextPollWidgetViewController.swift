@@ -75,6 +75,7 @@ class CustomTextPollWidgetViewController: Widget {
                 // self.applyOptionTheme(optionView: view, optionTheme: nil)
             }
 
+            view.layer.backgroundColor =  UIColor(red: 0.106, green: 0.114, blue: 0.122, alpha: 1).cgColor
             let voteCount = viewModel.getVoteCount(optionID: data.id)
             let votePercentage = self.viewModel.getVoteCountTotal() > 0
                 ? CGFloat(voteCount) / CGFloat(self.viewModel.getVoteCountTotal())
@@ -93,6 +94,7 @@ class CustomTextPollWidgetViewController: Widget {
         if selectedOptionIndex == nil {
             optionViews.forEach {
                 $0.layer.borderColor = UIColor.clear.cgColor
+                $0.layer.backgroundColor = UIColor(red: 0.106, green: 0.114, blue: 0.122, alpha: 1).cgColor
             }
         }
 //        if let previousSelectedIndex = selectedOptionIndex {
