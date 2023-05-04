@@ -56,6 +56,7 @@ class CustomCheerMeterWidgetViewController: Widget {
         if model.userVotes.isEmpty {
             cheerMeterWidgetView.hidePowerBar()
         }
+        self.model.registerImpression()
     }
 
     

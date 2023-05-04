@@ -59,7 +59,7 @@ class CustomTextPollWidgetViewController: Widget {
                 self.showResultsFromWidgetOptions()
             }
         }
-        
+        self.model.registerImpression()
     }
     
     private func showResultsFromWidgetOptions() {
