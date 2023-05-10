@@ -7,6 +7,11 @@ final class GradientView: UIView {
         case vertical
     }
 
+    enum Side {
+        case left
+        case right
+    }
+    
     var livelike_startColor: Background = .fill(color: .clear) {
         didSet {
             updateGradient()
@@ -20,10 +25,12 @@ final class GradientView: UIView {
     }
 
     private var orientation: Orientation = .vertical
+    private var side: Side = .left
     private var gradientLayer: CAGradientLayer?
 
-    init(orientation: Orientation = .vertical) {
+    init(orientation: Orientation = .vertical, side:Side = .left) {
         self.orientation = orientation
+        self.side = side
         super.init(frame: .zero)
         gradientLayer = layer as? CAGradientLayer
         configure()
@@ -40,6 +47,23 @@ final class GradientView: UIView {
         configure()
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        var boundingCorners:UIRectCorner? = nil
+        if(side == .left){
+            boundingCorners = [.topLeft, .bottomLeft]
+        } else {
+            boundingCorners = [.topRight, .bottomRight]
+        }
+        
+        let path = UIBezierPath(roundedRect: self.bounds,
+                                byRoundingCorners: boundingCorners!,
+                                cornerRadii: CGSize(width: 4, height: 4))
+                                let maskLayer = CAShapeLayer()
+                                maskLayer.path = path.cgPath
+                                self.layer.mask = maskLayer
+    }
+    
     private func configure() {
         isUserInteractionEnabled = false
         translatesAutoresizingMaskIntoConstraints = false

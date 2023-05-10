@@ -43,7 +43,9 @@ class CheerMeterPowerBar: UIView {
     var shouldUpdateWidths: Bool = true
 
     init() {
-        leftChoiceBar = constraintBased { GradientView(orientation: .horizontal) }
+        
+        
+        leftChoiceBar = constraintBased { GradientView(orientation: .horizontal, side: .left) }
         leftChoiceFlashView = constraintBased {
             let view = UIView(frame: .zero)
             view.backgroundColor = .white
@@ -53,7 +55,7 @@ class CheerMeterPowerBar: UIView {
 
         leftChoiceLabel = constraintBased { UILabel(frame: .zero) }
 
-        rightChoiceBar = constraintBased { GradientView(orientation: .horizontal) }
+        rightChoiceBar = constraintBased { GradientView(orientation: .horizontal, side: .right) }
 
         rightChoiceFlashView = constraintBased {
             let view = UIView(frame: .zero)
